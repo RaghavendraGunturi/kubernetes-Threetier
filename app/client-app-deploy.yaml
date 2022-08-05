@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-todoapp-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-todoapp-client
+  template:
+    metadata:
+      labels:
+        app: react-todoapp-client
+    spec:
+      containers:
+      - image: ameenalam/react-todoapp-client:latest
+        name: react-todoapp-client
+        envFrom:
+        - configMapRef:
+            name: client-config
